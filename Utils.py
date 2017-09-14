@@ -10,9 +10,16 @@ class Loader:
         """
         self.iface = iface
 
-    def load_shapefiles(self, shp_path):
+    def LoadBasemap(self):
+        shp_path='U:/Basemap'
+        shps = glob(path.join(shp_path, "*.shp"))
+        for shp in shps:
+            (shpdir, shpfile) = path.split(shp)
+            self.iface.addVectorLayer(shp, shpfile, 'ogr' )
+
+    def LoadShpData(self, shp_path):
         """Load all shapefiles found in shp_path"""
-        print "Loading shapes from %s" % path.join(shp_path, "*.shp")
+        print("Loading shapes from %s" % path.join(shp_path, "*.shp"))
         shps = glob(path.join(shp_path, "*.shp"))
         for shp in shps:
             (shpdir, shpfile) = path.split(shp)
